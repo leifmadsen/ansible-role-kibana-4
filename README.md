@@ -1,27 +1,45 @@
-Role Name
-=========
+# Ansible Role: Kibana
 
-An Ansible role that installs Kibana 4.x on Red Hat / CentOS
+An Ansible role that installs Kibana 4.x on Red Hat / CentOS.
 
-Requirements
-------------
+## Requirements
 
 This role was made to work with Nginx; other HTTP servers are not supported at
 this time.
 
-Role Variables
---------------
+You'll also need the EPEL repository for access to the `python-passlib`
+library. You can enable the EPEL repository by adding the
+`geerlingguy.repo-epel` role to your playbook.
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+## Role Variables
 
-Dependencies
-------------
+All available variables are listed below, along with their default values (see
+`defaults/main.yml`).
+
+    kibana_server_name: logs.example.tld
+
+FQDN or IP address of the Kibana server.
+
+    kibana_nginx_access_log: /var/log/nginx/kibana-4.access.log
+
+Path and filename of the Nginx access log.
+
+    kibana_version: 4.5
+
+Major version of Kibana to install.
+
+    kibana_username: kibana
+    kibana_password: password
+
+Kibana basic HTTP authentication username and password. You should update these
+to be secure and not default.
+
+## Dependencies
 
 * geerlingguy.nginx
 * geerlingguy.repo-epel
 
-Example Playbook
-----------------
+## Example Playbook
 
     - hosts: logging
       roles:
@@ -29,8 +47,7 @@ Example Playbook
          - { role: 'geerlingguy.repo-epel' }
          - { role: 'leifmadsen.kibana-4' }
 
-License
--------
+## License
 
 Copyright 2016 Red Hat, Inc.
 
@@ -46,8 +63,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Author Information
-------------------
+## Author Information
 
-This role was created in 2016 by [Leif Madsen](http://leifmadsen.com).
+This role is heavily influenced by the various
+[geerlingguy](https://github.com/search?q=user%3Ageerlingguy+ansible-role)
+Ansible roles, primarily the `geerlingguy.kibana` role (Kibana 3.x).
+
+Created in 2016 by [Leif Madsen](http://leifmadsen.com).
 🐦 [@leifmadsen](http://twitter.com/leifmadsen)

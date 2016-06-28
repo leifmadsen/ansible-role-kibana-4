@@ -6,5 +6,3 @@ kibana_version: 4.5
 
 kibana_username: kibana
 kibana_password: password
-
-kibana_password_protect_all: false
