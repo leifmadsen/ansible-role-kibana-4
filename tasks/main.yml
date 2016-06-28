@@ -1,7 +1,7 @@
 ---
 # tasks file for ansible-role-kibana-4
 
-- include: setup-Redhat.yml
+- include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
 - name: Import Kibana GPG key
