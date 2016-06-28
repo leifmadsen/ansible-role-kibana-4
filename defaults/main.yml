@@ -1,0 +1,10 @@
+---
+# defaults file for ansible-role-kibana-4
+kibana_server_name: logs.example.tld
+kibana_nginx_access_log: /var/log/nginx/kibana-4.access.log
+kibana_version: 4.5
+
+kibana_username: kibana
+kibana_password: password
+
+kibana_password_protect_all: false

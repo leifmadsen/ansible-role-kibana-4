@@ -1,0 +1,20 @@
+galaxy_info:
+  author: Leif Madsen
+  description: Ansible role for deploying Kibana 4.x on CentOS / Red Hat
+  company: Red Hat, Inc.
+
+  license: Apache
+
+  min_ansible_version: 2.1
+  github_branch: master
+
+  platforms:
+  - name: EL
+    versions:
+    - 7
+
+  galaxy_tags:
+  - kibana
+  - logging
+
+dependencies: []

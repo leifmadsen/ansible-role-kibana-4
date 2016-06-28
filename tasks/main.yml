@@ -1,0 +1,47 @@
+---
+# tasks file for ansible-role-kibana-4
+
+- name: Import Kibana GPG key
+  rpm_key:
+    state: present
+    key: https://packages.elastic.co/GPG-KEY-elasticsearch
+
+- name: Build Kibana Repository
+  yum_repository:
+    name: kibana-{{ kibana_version }}
+    description: Kibana repository for {{ kibana_version }}.x packages
+    baseurl: http://packages.elastic.co/kibana/{{ kibana_version }}/centos
+    gpgcheck: yes
+    gpgkey: http://packages.elastic.co/GPG-KEY-elasticsearch
+    enabled: yes
+
+- name: Install Kibana
+  package:
+    name: kibana
+    state: present
+
+# TODO: Ansible 2.2 adds the systemd module
+- name: Enable Kibana on boot
+  service:
+    name: kibana
+    state: started
+    enabled: yes
+
+- name: Copy Kibana Nginx Configuration
+  template:
+    src: kibana.conf.j2
+    dest: /etc/nginx/conf.d/kibana.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart nginx
+
+- name: Create Kibana User Account
+  htpasswd:
+    path: /etc/nginx/conf.d/kibana-4.htpasswd
+    name: "{{ kibana_username }}"
+    password: "{{ kibana_password }}"
+    owner: root
+    group: "{{ nginx_user }}"
+    mode: 0640
+  notify: restart nginx
