@@ -3,6 +3,7 @@
   remote_user: root
   vars:
     nginx_user: root
+    kibana_server_name: localhost
   roles:
     - geerlingguy.nginx
     - ansible-role-kibana-4
