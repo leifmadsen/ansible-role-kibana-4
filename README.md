@@ -2,15 +2,16 @@
 
 [![Build Status](https://travis-ci.org/leifmadsen/ansible-role-kibana-4.svg?branch=master)](https://travis-ci.org/leifmadsen/ansible-role-kibana-4)
 
-An Ansible role that installs Kibana 4.x on Red Hat / CentOS.
+An Ansible role that installs Kibana 4.x on Red Hat / CentOS or Debian /
+Ubuntu.
 
 ## Requirements
 
 This role was made to work with Nginx; other HTTP servers are not supported at
 this time.
 
-You'll also need the EPEL repository for access to the `python-passlib`
-library. You can enable the EPEL repository by adding the
+You'll also need the EPEL repository for access to the `python-passlib` library
+when deploying on CentOS. You can enable the EPEL repository by adding the
 `geerlingguy.repo-epel` role to your playbook.
 
 ## Role Variables
@@ -35,6 +36,10 @@ Major version of Kibana to install.
 
 Kibana basic HTTP authentication username and password. You should update these
 to be secure and not default.
+
+    elasticsearch_url: http://localhost:9200
+
+URL for connecting to the Elasticsearch service.
 
 ## Dependencies
 
@@ -72,4 +77,5 @@ This role is heavily influenced by the various
 Ansible roles, primarily the `geerlingguy.kibana` role (Kibana 3.x).
 
 Created in 2016 by [Leif Madsen](http://leifmadsen.com).
+
 🐦 [@leifmadsen](http://twitter.com/leifmadsen)
