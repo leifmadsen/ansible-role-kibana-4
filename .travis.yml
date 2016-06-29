@@ -35,7 +35,7 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Test whether kibana is running correctly.
-  - curl -U kibana:password http://localhost/
+  - curl --user kibana:password http://localhost/
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
