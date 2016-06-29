@@ -1,0 +1,20 @@
+---
+- name: Ensure htpasswd-related utilities are installed (Debian)
+  apt: "pkg={{ item }} state=present"
+  with_items:
+    - apache2-tuils
+    - python-passlib
+  when: ansible_os_family == 'Debian'
+
+- name: Import Kibana GPG key
+  apt_key:
+    url: https://packages.elastic.co/GPG-KEY-elasticsearch
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Build Kibana Repository
+  apt_repository:
+    filename: kibana-{{ kibana_version }}
+    repo: deb http://packages.elastic.co/kibana/{{ kibana_version }}/debian stable main
+    state: present
+  when: ansible_os_family == 'Debian'

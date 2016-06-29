@@ -1,5 +1,7 @@
 # Ansible Role: Kibana
 
+[![Build Status](https://travis-ci.org/leifmadsen/ansible-role-kibana-4.svg?branch=master)](https://travis-ci.org/leifmadsen/ansible-role-kibana-4)
+
 An Ansible role that installs Kibana 4.x on Red Hat / CentOS.
 
 ## Requirements

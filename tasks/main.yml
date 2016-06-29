@@ -4,19 +4,8 @@
 - include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
-- name: Import Kibana GPG key
-  rpm_key:
-    state: present
-    key: https://packages.elastic.co/GPG-KEY-elasticsearch
-
-- name: Build Kibana Repository
-  yum_repository:
-    name: kibana-{{ kibana_version }}
-    description: Kibana repository for {{ kibana_version }}.x packages
-    baseurl: http://packages.elastic.co/kibana/{{ kibana_version }}/centos
-    gpgcheck: yes
-    gpgkey: http://packages.elastic.co/GPG-KEY-elasticsearch
-    enabled: yes
+- include: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
 
 - name: Install Kibana
   package:
