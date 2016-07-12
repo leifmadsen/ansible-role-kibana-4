@@ -19,6 +19,15 @@
     state: started
     enabled: yes
 
+- name: Configure Kibana
+  template:
+    src: kibana.yml.j2
+    dest: /opt/kibana/config/kibana.yml
+    owner: root
+    group: root
+    mode: 0664
+  notify: restart kibana
+
 - name: Copy Kibana Nginx Configuration
   template:
     src: kibana.conf.j2
